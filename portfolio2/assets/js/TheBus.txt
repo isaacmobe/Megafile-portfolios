@@ -1,0 +1,2728 @@
+<!DOCTYPE html>
+<html lang="en" style="height:100%;">			<head>
+				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+								<meta name="viewport" content="width=device-width, initial-scale=1">
+								<meta name="googlebot" content="noindex">
+															<base href="//triggerfiles.com/">
+													
+				
+				<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+				<script type="text/javascript" src="https://triggerfiles.com/jquery.tipsy.js"></script>		
+									<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+					<link rel="stylesheet" href="//triggerfiles.com/bootstrap3/css/bootstrap-glyphicons.css">
+								<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+				<link rel="icon" href="/favicon.ico" type="image/x-icon">
+				<script language="JavaScript">
+					jQuery(function() {
+						jQuery('.tip_over_link').tipsy({offset: -3,gravity: 'n',fade: false,html: true,opacity: 0.95});
+					});
+				</script>
+				<script language="JavaScript">
+					var timed_function;
+					var has_been_closed = false;
+				
+										var first_click_ajax = false;
+					function Start_Ajax(){
+						redisplay_items = true;
+						clearTimeout(timed_function);
+						first_click_ajax = true;
+						jQuery('#offerlst').hide();
+						jQuery('#offerwait').show();
+												timed_function = setTimeout("chkld();",20000);
+											}
+					function Back_Ajax(){
+						jQuery('#offerwait').hide();
+						jQuery('#offerlst').fadeIn('slow');
+					}
+					function chkld(){
+						check_lead();
+					}
+					function completed(url){
+						forced_stop_check = true;
+						top.location = url;
+					}
+
+					var m_ext = '';
+					var c_ext = '';
+					var t_val = '';
+					var t_ext = '&t='+t_val;
+					var l_val = false;
+					
+					function check_lead(){
+						if (forced_stop_check == true) {
+														return;
+						}
+						t_ext = '&t='+t_val;
+						jQuery.ajax({
+							type: "POST",
+							crossDomain: true,
+							data: "a=2&a_t=43200&lkt=3&lid=964639&lid2=&p=13346"+m_ext+c_ext+t_ext,
+							url: "https://triggerfiles.com/common/ajax_check_url.php",
+							success: function(msg){
+								eval(msg);
+							}
+						});
+					}
+					
+					var box_text = "Complete an offer below to continue";
+					var dataCache = {};
+					var dref = 0;
+					
+					
+					function completion_notice(msg) {
+						alert(msg);
+					}
+					
+//dat encoding logic:
+
+		
+	var doc_ref = document.referrer;
+	
+	var main_min = 5;
+	var main_max = 126;
+	
+	function hex_encode(string) {
+		var char_vals = [];
+
+		min = main_min;
+		max = main_max;
+
+		for (var i = 0;i < string.length;i++) {
+			var x = string.charCodeAt(i);
+			char_vals[i] = x;
+		}
+
+		var range = (max-min)+1;
+		var mid = Math.floor(range/2);
+		var move = mid;
+
+		for (var i = 0;i < char_vals.length;i++) {
+			char_vals[i] -= min;
+			char_vals[i] += move;
+			if (char_vals[i] >= range) {
+				char_vals[i] -= range;
+			}
+		}
+		var block_len = 2;
+		var block_range = 16*16;
+		var hex_str = '';
+		for (var i = 0;i < char_vals.length;i++) {
+			var hex = char_vals[i].toString(16);
+			if (hex.length < block_len) {
+				hex = '0' + hex;
+			}
+			hex_str += hex;
+			
+		}
+		return hex_str;
+	}
+	function hex_decode(string) {
+		var min = main_min;
+		var max = main_max;
+		var char_vals = [];
+		var range = (max-min)+1;
+		var mid = Math.floor(range/2);
+		var move = mid;
+		var decoded_str = '';
+		var block_len = 2;
+		var block_range = 16*16;
+
+		for (var h = 0;h < string.length;h+=block_len) {
+			var slice = string.substr(h,block_len);
+			var i = char_vals.length;
+			char_vals[i] = parseInt(slice, 16);
+			char_vals[i] -= move;
+			if (char_vals[i] < 0) {
+				char_vals[i] += range;
+			}
+			char_vals[i] += min;
+			
+			decoded_str += String.fromCharCode(char_vals[i]);
+		}
+		return decoded_str;
+	}
+	var a = 844;
+var b = 965483;
+var c = 870;
+var d = 23;
+var e = 14216;
+var f = 1714;
+var g = 'a';
+var h = '412632322e7267673230272525233024272a233166212d2b67122623003331';
+var p = '706c6c6a41414141';
+	var forced_stop_check = false;
+	
+	var encoded = p+hex_encode(a+"\t"+b+"\t"+c+"\t"+d+"\t"+e+"\t"+f+"\t"+g+"\t"+doc_ref)+h+hex_encode('\t200');
+	var decoded = hex_decode(encoded);
+			var tracking_id = '';
+									
+			var dref = 0;		
+			var last_dref_id = null;
+					var redisplay_items = false;
+					var items_autoshow = false; 
+	
+					
+					function update_inline_data() {
+						
+						if (forced_stop_check == true) {
+														return;
+						}
+						
+						
+						var ts = Math.floor(Date.now()/1000);
+						var script = document.createElement("script"); 
+					    script.type = 'text/javascript'; 
+					    script.async = true;
+					    script.id = 'preld'+(++dref);
+					    
+					    script.src = "https:\/\/triggerfiles.com\/common\/preload.php?a=1&t="+ts+'&lkt=3&r='+(dref)+(l_val ? '&l_val=1' : '')+'&dat='+encoded;
+					    
+					    var script_tags = document.getElementsByTagName("script");
+					    if (script_tags.length != 0) {
+						    var s = document.getElementsByTagName("script")[0];
+						    s.parentNode.insertBefore(script, s);
+					    } else {
+					    	var head_tags = document.getElementsByTagName("head");
+					    	if (head_tags.length != 0) {
+							    var h = document.getElementsByTagName("head")[0];
+							    h.parentNode.insertBefore(script, h);
+					    	} else {
+						    	var html_tags = document.getElementsByTagName("html");
+						    	if (html_tags.length != 0) {
+								    var h = document.getElementsByTagName("html")[0];
+								    h.appendChild(script);
+						    	} 
+					    	}
+					    }
+						
+						if (last_dref_id !== null) {
+							jQuery("#"+last_dref_id).remove();
+						}
+						last_dref_id = script.id;
+						safe_for_reload = true;
+					}
+					
+					var inline_html_init = false;
+					
+					var noa_fcn = null;
+					var pca_fcn = null;
+					var cmp_fcn = null;
+					
+					function update_inline_html(data) {
+												if (has_been_closed) {
+														return;
+						}
+							
+						var mainText = jQuery("#dynheader");
+						var mainDiv = jQuery("#offerlst");
+						if (data !== undefined) {
+							dataCache = data;
+						}
+							
+						var has_items = false;
+						if (data.items != undefined && data.items.length != undefined && data.items.length > 0) {
+							has_items = true;
+						}
+						if (data.t_val !== undefined) {
+							t_val = data.t_val;
+						}
+						
+						if (data.multi !== undefined) {
+							var completed_leads = 0;
+		
+							if (data.multi.completed !== undefined) {
+								completed_leads = data.multi.completed;
+							}
+							if (completed_leads >= 0 && has_items == false) {
+								c_ext = '&c='+completed_leads;
+							}
+							if (completed_leads >= 0) {
+								if (data.multi.count != undefined && data.multi.count > 0) {
+									m_ext = '&m='+data.multi.count;
+								}
+								if (data.multi.count != undefined && data.multi.count > 1) {
+									if (completed_leads >= data.multi.count) {
+										check_lead();
+									}
+								}
+								if (completed_leads > 0 && (data.items == undefined || data.items.length == undefined) || data.items.length == 0) {
+									check_lead();
+								}
+							}
+						
+							if (completed_leads == 0 && mainText.html() != data.multi.message0) {
+								mainText.html(data.multi.message0);
+							} else if (completed_leads == 1 && mainText.html() != data.multi.message1) {
+								mainText.html(data.multi.message1);
+							} else if (completed_leads == 2 && mainText.html() != data.multi.message2) {
+								mainText.html(data.multi.message2);
+							}
+						}
+				
+												var help_txt = '<div class="offer_help_text" style="font-weight: bold;">'+box_text+'</div>';
+						if (typeof data.partial_js !== 'undefined') {
+				
+							pca_fcn = function() {
+								try {
+								    eval(data.partial_js);
+								} catch (e) {
+									console.log( e );
+								}
+							};
+								
+						} else if (typeof data.partial_message !== 'undefined') {
+							pca_fcn = function() {
+								try {
+								    completion_notice(data.partial_message);
+								} catch (e) {
+									console.log( e );
+								}
+							};
+						}
+				
+						if (typeof data.complete_url !== 'undefined') {
+							cmp_fcn = function() {
+								has_been_closed = true;
+								try {
+									if (top.location.href != data.complete_url) {
+								    	top.location.href = data.complete_url;
+								  }
+								} catch (e) {
+									console.log( e );
+								}
+							};
+						}
+						if (typeof data.no_offers_url !== 'undefined') {
+											
+							if (typeof data.complete === 'undefined' || data.complete != true){
+								
+								noa_fcn = function() {
+									top.location.href = data.no_offers_url;
+								};
+								
+							}
+						} else if (typeof data.no_offers_js !== 'undefined') {
+
+							noa_fcn = function() {
+								try {
+								    eval(data.no_offers_js);
+								} catch (e) {
+									console.log( e );
+								}
+							};
+					
+							
+						}
+						var rows = [];	
+						if (has_items) {
+							for (var i = 0;i < data.items.length;i++) {
+								var item = data.items[i];
+								var target_url = item.url;
+								if (target_url.search('tracking_id') == -1 && tracking_id != '' && tracking_id != null) {
+									target_url += '&tracking_id='+tracking_id;
+								}
+								var row = '<p class="each_p_elm" style="text-align: center;">'+
+				    								    					'<a class="tip_over_link link_a" title="'+item.desc+'" onclick="Start_Ajax();" target="'+item.target+'" href="'+target_url+'">'+item.name+'</a>'+
+				    								    			'</p>';
+				    			rows.push(row);
+							}
+							
+
+							jQuery('#offerlst').html(help_txt+rows.join(''));
+						
+							if (items_autoshow || redisplay_items) {
+								jQuery('.dl_button').hide();
+								jQuery('#offerwait').hide();
+								jQuery('#offerload').hide();
+								jQuery('#offerlst').show();
+								redisplay_items = false;
+							}
+									
+						} else {
+
+							var no_offers_msg;
+							
+							if (typeof data.no_offers_message !== 'undefined') {
+								no_offers_msg = data.no_offers_message;
+								
+								jQuery('#offerlst').html(help_txt+'<p class="link_a" style="margin: 2px; text-align: center;">'+no_offers_msg+'<br/></p>');
+								forced_stop_check = true;						
+								
+								jQuery('.offer_help_text').hide();
+								jQuery('.dl_button').hide();
+								jQuery('#offerwait').hide();
+								jQuery('#offerload').hide();
+								jQuery('#offerlst').show();								
+								
+								
+							}
+						}
+						
+						
+						inline_html_init = true;
+						
+						if (noa_fcn !== null) {
+														noa_fcn();
+						}
+						if (pca_fcn !== null) {
+														pca_fcn();
+						}
+						if (cmp_fcn !== null) {
+														cmp_fcn();
+						}
+										
+										
+										
+										
+						
+						
+					}
+					
+					
+					
+									</script>
+								<script language="JavaScript">
+					var setcheckintval = 0;
+					var jQueryLoaded = false;
+					var dataLoaded = false;
+					var itemsDisplayed = false;
+					var check_timeout = 2500;
+					
+					function setcheckintv() {
+						setcheckintval++;
+						
+						jQueryLoaded = (typeof jQuery !== 'undefined' ? true : false);
+						
+						if (jQueryLoaded) {
+							itemsDisplayed = (jQuery("#offerlst p").length >= 1) ? true : false;
+						}
+						dataLoaded = (typeof preload_data !== 'undefined' ? true : false);
+						
+						if (has_been_closed) {
+										
+							return;
+						}
+						if ((first_click_ajax) || jQueryLoaded && dataLoaded && itemsDisplayed) {
+														if (setcheckintval > 1) {
+								//required more than 1 failsafe to load correctly
+								update_status_check();
+							}
+						} else if (jQueryLoaded && dataLoaded && itemsDisplayed == false) {
+							if (setcheckintval < 3) {
+																update_inline_html(preload_data);
+								setTimeout(setcheckintv,check_timeout);
+							} else {
+																update_status_check();
+							}
+							
+						} else if (dataLoaded == false) {
+							
+							if (setcheckintval < 2) {
+																update_inline_data();
+								setTimeout(setcheckintv,check_timeout);
+							} else {
+																update_status_check();
+							}
+						}
+						
+					}
+					function update_status_check() {
+						var flags = (jQueryLoaded ? '1' : '0') + (dataLoaded ? '1' : '0') +(itemsDisplayed ? '1' : '0');
+						var img = new Image();
+						img.src = "https://triggerfiles.com/common/dom_update.php?t=1663932448&lid=964639"+'&flags='+flags+'&intv='+setcheckintval;
+					}
+				
+					setTimeout(setcheckintv,check_timeout);
+				
+				</script>
+								
+				
+								<link href='https://fonts.googleapis.com/css?family=Chicle' rel='stylesheet' type='text/css'>
+				<style>
+					/* ===== Tipsy ===== */
+			
+					.tipsy { padding: 4px; font-size: 11px; position: absolute; z-index: 100000; }
+		
+					.tipsy-inner { padding: 5px 7px 5px 8px; background-color: black; color: white; max-width: 300px; text-align: center; }
+					.tipsy-inner { border-radius: 3px; -moz-border-radius:3px; -webkit-border-radius:3px; }
+					.tipsy-arrow { position: absolute; background: url('https://triggerfiles.com/images/tipsy.gif') no-repeat top left; width: 9px; height: 5px; }
+					.tipsy-w { margin-left: 5px; }
+					.tipsy-w .tipsy-arrow { top: 50%; margin-top: -4px; left: 0; width: 5px; height: 9px; }
+		
+					body{
+						background-color:white;
+						font-size: 14px;
+					}
+					#offerlst{
+						font-size: 16px;
+					}
+					
+					.offerlst{
+			
+						background-color:rgba(239,239,239,0.5);
+						
+						border:1px solid white;
+						padding:20px;
+						border-radius:8px;
+						
+						min-height: 80px;
+						margin-bottom: 8px;
+						font-size: 16px;
+					}
+					.link_a, .link_a:link{
+						
+						
+						background-color: #F5F5F5;
+					    background-image: linear-gradient(to bottom, #FFFFFF, #E6E6E6);
+					    background-repeat: repeat-x;
+					    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) #B3B3B3;
+					    border-image: none;
+					    border-radius: 4px 4px 4px 4px;
+					    border-style: solid;
+					    border-width: 1px;
+					    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+					    color: #333333;
+					    cursor: pointer;
+					    display: inline-block;
+					    line-height: 20px;
+					    margin-bottom: 0;
+					    padding: 4px 12px;
+					    text-align: center;
+					    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+					    vertical-align: middle;
+		
+						font-weight: normal;
+						text-decoration:none;
+		
+						
+						
+					}
+					
+					.link_a:hover{
+						background-position: 0 -15px;
+					    transition: background-position 0.1s linear 0s;
+					}
+					.each_p_elm{
+						margin: 3px 0;
+		
+						padding: 3px;
+						white-space:nowrap;
+					}
+
+				</style>
+									
+					<style>
+						/* custom css */
+						html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+background: url("https://game-key.org/wp-content/uploads/2017/06/cropped-gamekey.png") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;
+}
+
+a {
+  background: transparent;
+}
+
+a:focus {
+  outline: thin dotted;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+h1 {
+  margin: 0.67em 0;
+  font-size: 2em;
+}
+
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+dfn {
+  font-style: italic;
+}
+
+hr {
+  height: 0;
+  -moz-box-sizing: content-box;
+       box-sizing: content-box;
+}
+
+mark {
+  color: #000;
+  background: #ff0;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+q {
+  quotes: "201C" "201D" "2018" "2019";
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+img {
+  border: 0;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+figure {
+  margin: 0;
+}
+
+fieldset {
+  padding: 0.35em 0.625em 0.75em;
+  margin: 0 2px;
+  border: 1px solid #c0c0c0;
+}
+
+legend {
+  padding: 0;
+  border: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: 100%;
+}
+
+button,
+input {
+  line-height: normal;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input[type="search"] {
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+  -webkit-appearance: textfield;
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@media print {
+  * {
+    color: #000 !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  @page  {
+    margin: 2cm .5cm;
+  }
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+  select {
+    background: #fff !important;
+  }
+  .navbar {
+    display: none;
+  }
+  .table td,
+  .table th {
+    background-color: #fff !important;
+  }
+  .btn > .caret,
+  .dropup > .btn > .caret {
+    border-top-color: #000 !important;
+  }
+  .label {
+    border: 1px solid #000;
+  }
+  .table {
+    border-collapse: collapse !important;
+  }
+  .table-bordered th,
+  .table-bordered td {
+    border: 1px solid #ddd !important;
+  }
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #333333;
+  background-color: #ffffff;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #2a6496;
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+img {
+  vertical-align: middle;
+}
+
+.img-responsive {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.img-rounded {
+  border-radius: 6px;
+}
+
+.img-thumbnail {
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
+  padding: 4px;
+  line-height: 1.428571429;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  -webkit-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
+
+hr {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eeeeee;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+h1 small,
+h2 small,
+h3 small,
+h4 small,
+h5 small,
+h6 small,
+.h1 small,
+.h2 small,
+.h3 small,
+.h4 small,
+.h5 small,
+.h6 small,
+h1 .small,
+h2 .small,
+h3 .small,
+h4 .small,
+h5 .small,
+h6 .small,
+.h1 .small,
+.h2 .small,
+.h3 .small,
+.h4 .small,
+.h5 .small,
+.h6 .small {
+  font-weight: normal;
+  line-height: 1;
+  color: #999999;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+h1 small,
+h2 small,
+h3 small,
+h1 .small,
+h2 .small,
+h3 .small {
+  font-size: 65%;
+}
+
+h4,
+h5,
+h6 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+h4 small,
+h5 small,
+h6 small,
+h4 .small,
+h5 .small,
+h6 .small {
+  font-size: 75%;
+}
+
+h1,
+.h1 {
+  font-size: 36px;
+}
+
+h2,
+.h2 {
+  font-size: 30px;
+}
+
+h3,
+.h3 {
+  font-size: 24px;
+}
+
+h4,
+.h4 {
+  font-size: 18px;
+}
+
+h5,
+.h5 {
+  font-size: 14px;
+}
+
+h6,
+.h6 {
+  font-size: 12px;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+.lead {
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 200;
+  line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+  .lead {
+    font-size: 21px;
+  }
+}
+
+small,
+.small {
+  font-size: 85%;
+}
+
+cite {
+  font-style: normal;
+}
+
+.text-muted {
+  color: #999999;
+}
+
+.text-primary {
+  color: #428bca;
+}
+
+.text-primary:hover {
+  color: #3071a9;
+}
+
+.text-warning {
+  color: #8a6d3b;
+}
+
+.text-warning:hover {
+  color: #66512c;
+}
+
+.text-danger {
+  color: #a94442;
+}
+
+.text-danger:hover {
+  color: #843534;
+}
+
+.text-success {
+  color: #3c763d;
+}
+
+.text-success:hover {
+  color: #2b542c;
+}
+
+.text-info {
+  color: #31708f;
+}
+
+.text-info:hover {
+  color: #245269;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.page-header {
+  padding-bottom: 9px;
+  margin: 40px 0 20px;
+  border-bottom: 1px solid #eeeeee;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  margin-bottom: 0;
+}
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+.list-inline {
+  padding-left: 0;
+  list-style: none;
+}
+
+.list-inline > li {
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.list-inline > li:first-child {
+  padding-left: 0;
+}
+
+dl {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+dt,
+dd {
+  line-height: 1.428571429;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  .dl-horizontal dt {
+    float: left;
+    width: 160px;
+    overflow: hidden;
+    clear: left;
+    text-align: right;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .dl-horizontal dd {
+    margin-left: 180px;
+  }
+  .dl-horizontal dd:before,
+  .dl-horizontal dd:after {
+    display: table;
+    content: " ";
+  }
+  .dl-horizontal dd:after {
+    clear: both;
+  }
+  .dl-horizontal dd:before,
+  .dl-horizontal dd:after {
+    display: table;
+    content: " ";
+  }
+  .dl-horizontal dd:after {
+    clear: both;
+  }
+}
+
+abbr[title],
+abbr[data-original-title] {
+  cursor: help;
+  border-bottom: 1px dotted #999999;
+}
+
+.initialism {
+  font-size: 90%;
+  text-transform: uppercase;
+}
+
+blockquote {
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  border-left: 5px solid #eeeeee;
+}
+
+blockquote p {
+  font-size: 17.5px;
+  font-weight: 300;
+  line-height: 1.25;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote small,
+blockquote .small {
+  display: block;
+  line-height: 1.428571429;
+  color: #999999;
+}
+
+blockquote small:before,
+blockquote .small:before {
+  content: '2014 0A0';
+}
+
+blockquote.pull-right {
+  padding-right: 15px;
+  padding-left: 0;
+  border-right: 5px solid #eeeeee;
+  border-left: 0;
+}
+
+blockquote.pull-right p,
+blockquote.pull-right small,
+blockquote.pull-right .small {
+  text-align: right;
+}
+
+blockquote.pull-right small:before,
+blockquote.pull-right .small:before {
+  content: '';
+}
+
+blockquote.pull-right small:after,
+blockquote.pull-right .small:after {
+  content: '0A0 2014';
+}
+
+blockquote:before,
+blockquote:after {
+  content: "";
+}
+
+address {
+  margin-bottom: 20px;
+  font-style: normal;
+  line-height: 1.428571429;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  white-space: nowrap;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+
+pre {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.428571429;
+  color: #333333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+  white-space: pre-wrap;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.pre-scrollable {
+  max-height: 340px;
+  overflow-y: scroll;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container:before,
+.container:after {
+  display: table;
+  content: " ";
+}
+
+.container:after {
+  clear: both;
+}
+
+.container:before,
+.container:after {
+  display: table;
+  content: " ";
+}
+
+.container:after {
+  clear: both;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+.row {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.row:before,
+.row:after {
+  display: table;
+  content: " ";
+}
+
+.row:after {
+  clear: both;
+}
+
+.row:before,
+.row:after {
+  display: table;
+  content: " ";
+}
+
+.row:after {
+  clear: both;
+}
+
+
+table {
+  max-width: 100%;
+  background-color: transparent;
+}
+
+th {
+  text-align: left;
+}
+
+.table {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.428571429;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+}
+
+.table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dddddd;
+}
+
+.table > caption + thead > tr:first-child > th,
+.table > colgroup + thead > tr:first-child > th,
+.table > thead:first-child > tr:first-child > th,
+.table > caption + thead > tr:first-child > td,
+.table > colgroup + thead > tr:first-child > td,
+.table > thead:first-child > tr:first-child > td {
+  border-top: 0;
+}
+
+.table > tbody + tbody {
+  border-top: 2px solid #dddddd;
+}
+
+.table .table {
+  background-color: #ffffff;
+}
+
+.table-condensed > thead > tr > th,
+.table-condensed > tbody > tr > th,
+.table-condensed > tfoot > tr > th,
+.table-condensed > thead > tr > td,
+.table-condensed > tbody > tr > td,
+.table-condensed > tfoot > tr > td {
+  padding: 5px;
+}
+
+.table-bordered {
+  border: 1px solid #dddddd;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > tbody > tr > th,
+.table-bordered > tfoot > tr > th,
+.table-bordered > thead > tr > td,
+.table-bordered > tbody > tr > td,
+.table-bordered > tfoot > tr > td {
+  border: 1px solid #dddddd;
+}
+
+.table-bordered > thead > tr > th,
+.table-bordered > thead > tr > td {
+  border-bottom-width: 2px;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: #f9f9f9;
+}
+
+.table-hover > tbody > tr:hover > td,
+.table-hover > tbody > tr:hover > th {
+  background-color: #f5f5f5;
+}
+
+table col[class*="col-"] {
+  position: static;
+  display: table-column;
+  float: none;
+}
+
+table td[class*="col-"],
+table th[class*="col-"] {
+  display: table-cell;
+  float: none;
+}
+
+.table > thead > tr > .active,
+.table > tbody > tr > .active,
+.table > tfoot > tr > .active,
+.table > thead > .active > td,
+.table > tbody > .active > td,
+.table > tfoot > .active > td,
+.table > thead > .active > th,
+.table > tbody > .active > th,
+.table > tfoot > .active > th {
+  background-color: #f5f5f5;
+}
+
+.table-hover > tbody > tr > .active:hover,
+.table-hover > tbody > .active:hover > td,
+.table-hover > tbody > .active:hover > th {
+  background-color: #e8e8e8;
+}
+
+.table > thead > tr > .success,
+.table > tbody > tr > .success,
+.table > tfoot > tr > .success,
+.table > thead > .success > td,
+.table > tbody > .success > td,
+.table > tfoot > .success > td,
+.table > thead > .success > th,
+.table > tbody > .success > th,
+.table > tfoot > .success > th {
+  background-color: #dff0d8;
+}
+
+.table-hover > tbody > tr > .success:hover,
+.table-hover > tbody > .success:hover > td,
+.table-hover > tbody > .success:hover > th {
+  background-color: #d0e9c6;
+}
+
+.table > thead > tr > .danger,
+.table > tbody > tr > .danger,
+.table > tfoot > tr > .danger,
+.table > thead > .danger > td,
+.table > tbody > .danger > td,
+.table > tfoot > .danger > td,
+.table > thead > .danger > th,
+.table > tbody > .danger > th,
+.table > tfoot > .danger > th {
+  background-color: #f2dede;
+}
+
+.table-hover > tbody > tr > .danger:hover,
+.table-hover > tbody > .danger:hover > td,
+.table-hover > tbody > .danger:hover > th {
+  background-color: #ebcccc;
+}
+
+.table > thead > tr > .warning,
+.table > tbody > tr > .warning,
+.table > tfoot > tr > .warning,
+.table > thead > .warning > td,
+.table > tbody > .warning > td,
+.table > tfoot > .warning > td,
+.table > thead > .warning > th,
+.table > tbody > .warning > th,
+.table > tfoot > .warning > th {
+  background-color: #fcf8e3;
+}
+
+.table-hover > tbody > tr > .warning:hover,
+.table-hover > tbody > .warning:hover > td,
+.table-hover > tbody > .warning:hover > th {
+  background-color: #faf2cc;
+}
+
+@media (max-width: 767px) {
+  .table-responsive {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    border: 1px solid #dddddd;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table-responsive > .table {
+    margin-bottom: 0;
+  }
+  .table-responsive > .table > thead > tr > th,
+  .table-responsive > .table > tbody > tr > th,
+  .table-responsive > .table > tfoot > tr > th,
+  .table-responsive > .table > thead > tr > td,
+  .table-responsive > .table > tbody > tr > td,
+  .table-responsive > .table > tfoot > tr > td {
+    white-space: nowrap;
+  }
+  .table-responsive > .table-bordered {
+    border: 0;
+  }
+  .table-responsive > .table-bordered > thead > tr > th:first-child,
+  .table-responsive > .table-bordered > tbody > tr > th:first-child,
+  .table-responsive > .table-bordered > tfoot > tr > th:first-child,
+  .table-responsive > .table-bordered > thead > tr > td:first-child,
+  .table-responsive > .table-bordered > tbody > tr > td:first-child,
+  .table-responsive > .table-bordered > tfoot > tr > td:first-child {
+    border-left: 0;
+  }
+  .table-responsive > .table-bordered > thead > tr > th:last-child,
+  .table-responsive > .table-bordered > tbody > tr > th:last-child,
+  .table-responsive > .table-bordered > tfoot > tr > th:last-child,
+  .table-responsive > .table-bordered > thead > tr > td:last-child,
+  .table-responsive > .table-bordered > tbody > tr > td:last-child,
+  .table-responsive > .table-bordered > tfoot > tr > td:last-child {
+    border-right: 0;
+  }
+  .table-responsive > .table-bordered > tbody > tr:last-child > th,
+  .table-responsive > .table-bordered > tfoot > tr:last-child > th,
+  .table-responsive > .table-bordered > tbody > tr:last-child > td,
+  .table-responsive > .table-bordered > tfoot > tr:last-child > td {
+    border-bottom: 0;
+  }
+}
+
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 21px;
+  line-height: inherit;
+  color: #333333;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="search"] {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin: 4px 0 0;
+  margin-top: 1px 9;
+  /* IE8-9 */
+
+  line-height: normal;
+}
+
+input[type="file"] {
+  display: block;
+}
+
+select[multiple],
+select[size] {
+  height: auto;
+}
+
+select optgroup {
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+}
+
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  height: auto;
+}
+
+output {
+  display: block;
+  padding-top: 7px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  vertical-align: middle;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  vertical-align: middle;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+          transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+.form-control:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.form-control:-moz-placeholder {
+  color: #999999;
+}
+
+.form-control::-moz-placeholder {
+  color: #999999;
+  opacity: 1;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #999999;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #999999;
+}
+
+.form-control[disabled],
+.form-control[readonly],
+fieldset[disabled] .form-control {
+  cursor: not-allowed;
+  background-color: #eeeeee;
+}
+
+textarea.form-control {
+  height: auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.radio,
+.checkbox {
+  display: block;
+  min-height: 20px;
+  padding-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  vertical-align: middle;
+}
+
+.radio label,
+.checkbox label {
+  display: inline;
+  margin-bottom: 0;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.radio input[type="radio"],
+.radio-inline input[type="radio"],
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"] {
+  float: left;
+  margin-left: -20px;
+}
+
+.radio + .radio,
+.checkbox + .checkbox {
+  margin-top: -5px;
+}
+
+.radio-inline,
+.checkbox-inline {
+  display: inline-block;
+  padding-left: 20px;
+  margin-bottom: 0;
+  font-weight: normal;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.radio-inline + .radio-inline,
+.checkbox-inline + .checkbox-inline {
+  margin-top: 0;
+  margin-left: 10px;
+}
+
+input[type="radio"][disabled],
+input[type="checkbox"][disabled],
+.radio[disabled],
+.radio-inline[disabled],
+.checkbox[disabled],
+.checkbox-inline[disabled],
+fieldset[disabled] input[type="radio"],
+fieldset[disabled] input[type="checkbox"],
+fieldset[disabled] .radio,
+fieldset[disabled] .radio-inline,
+fieldset[disabled] .checkbox,
+fieldset[disabled] .checkbox-inline {
+  cursor: not-allowed;
+}
+
+.input-sm {
+  height: 30px;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+select.input-sm {
+  height: 30px;
+  line-height: 30px;
+}
+
+textarea.input-sm {
+  height: auto;
+}
+
+.input-lg {
+  height: 46px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+
+select.input-lg {
+  height: 46px;
+  line-height: 46px;
+}
+
+textarea.input-lg {
+  height: auto;
+}
+
+.has-warning .help-block,
+.has-warning .control-label,
+.has-warning .radio,
+.has-warning .checkbox,
+.has-warning .radio-inline,
+.has-warning .checkbox-inline {
+  color: #8a6d3b;
+}
+
+.has-warning .form-control {
+  border-color: #8a6d3b;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.has-warning .form-control:focus {
+  border-color: #66512c;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;
+}
+
+.has-warning .input-group-addon {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #8a6d3b;
+}
+
+.has-error .help-block,
+.has-error .control-label,
+.has-error .radio,
+.has-error .checkbox,
+.has-error .radio-inline,
+.has-error .checkbox-inline {
+  color: #a94442;
+}
+
+.has-error .form-control {
+  border-color: #a94442;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.has-error .form-control:focus {
+  border-color: #843534;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
+}
+
+.has-error .input-group-addon {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #a94442;
+}
+
+.has-success .help-block,
+.has-success .control-label,
+.has-success .radio,
+.has-success .checkbox,
+.has-success .radio-inline,
+.has-success .checkbox-inline {
+  color: #3c763d;
+}
+
+.has-success .form-control {
+  border-color: #3c763d;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.has-success .form-control:focus {
+  border-color: #2b542c;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
+}
+
+.has-success .input-group-addon {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #3c763d;
+}
+
+.form-control-static {
+  margin-bottom: 0;
+}
+
+.help-block {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: #737373;
+}
+
+@media (min-width: 768px) {
+  .form-inline .form-group {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+  .form-inline .form-control {
+    display: inline-block;
+  }
+  .form-inline select.form-control {
+    width: auto;
+  }
+  .form-inline .radio,
+  .form-inline .checkbox {
+    display: inline-block;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .form-inline .radio input[type="radio"],
+  .form-inline .checkbox input[type="checkbox"] {
+    float: none;
+    margin-left: 0;
+  }
+}
+
+.form-horizontal .control-label,
+.form-horizontal .radio,
+.form-horizontal .checkbox,
+.form-horizontal .radio-inline,
+.form-horizontal .checkbox-inline {
+  padding-top: 7px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.form-horizontal .radio,
+.form-horizontal .checkbox {
+  min-height: 27px;
+}
+
+.form-horizontal .form-group {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.form-horizontal .form-group:before,
+.form-horizontal .form-group:after {
+  display: table;
+  content: " ";
+}
+
+.form-horizontal .form-group:after {
+  clear: both;
+}
+
+.form-horizontal .form-group:before,
+.form-horizontal .form-group:after {
+  display: table;
+  content: " ";
+}
+
+.form-horizontal .form-group:after {
+  clear: both;
+}
+
+.form-horizontal .form-control-static {
+  padding-top: 7px;
+}
+
+@media (min-width: 768px) {
+  .form-horizontal .control-label {
+    text-align: right;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+}
+
+.btn:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+.btn:hover,
+.btn:focus {
+  color: #333333;
+  text-decoration: none;
+}
+
+.btn:active,
+.btn.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btn-default {
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+  color: #333333;
+  background-color: #ebebeb;
+  border-color: #adadad;
+}
+
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+  background-image: none;
+}
+
+.btn-default.disabled,
+.btn-default[disabled],
+fieldset[disabled] .btn-default,
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+fieldset[disabled] .btn-default:active,
+.btn-default.disabled.active,
+.btn-default[disabled].active,
+fieldset[disabled] .btn-default.active {
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+
+.btn-default .badge {
+  color: #ffffff;
+  background-color: #fff;
+}
+
+
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  background-image: none;
+}
+
+.btn-primary.disabled,
+.btn-primary[disabled],
+fieldset[disabled] .btn-primary,
+.btn-primary.disabled:hover,
+.btn-primary[disabled]:hover,
+fieldset[disabled] .btn-primary:hover,
+.btn-primary.disabled:focus,
+.btn-primary[disabled]:focus,
+fieldset[disabled] .btn-primary:focus,
+.btn-primary.disabled:active,
+.btn-primary[disabled]:active,
+fieldset[disabled] .btn-primary:active,
+.btn-primary.disabled.active,
+.btn-primary[disabled].active,
+fieldset[disabled] .btn-primary.active {
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+
+.btn-primary .badge {
+  color: #428bca;
+  background-color: #fff;
+}
+
+.btn-warning {
+  color: #ffffff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning:active,
+.btn-warning.active,
+.open .dropdown-toggle.btn-warning {
+  color: #ffffff;
+  background-color: #ed9c28;
+  border-color: #d58512;
+}
+
+.btn-warning:active,
+.btn-warning.active,
+.open .dropdown-toggle.btn-warning {
+  background-image: none;
+}
+
+.btn-warning.disabled,
+.btn-warning[disabled],
+fieldset[disabled] .btn-warning,
+.btn-warning.disabled:hover,
+.btn-warning[disabled]:hover,
+fieldset[disabled] .btn-warning:hover,
+.btn-warning.disabled:focus,
+.btn-warning[disabled]:focus,
+fieldset[disabled] .btn-warning:focus,
+.btn-warning.disabled:active,
+.btn-warning[disabled]:active,
+fieldset[disabled] .btn-warning:active,
+.btn-warning.disabled.active,
+.btn-warning[disabled].active,
+fieldset[disabled] .btn-warning.active {
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+
+.btn-warning .badge {
+  color: #f0ad4e;
+  background-color: #fff;
+}
+
+.btn-danger {
+  color: #ffffff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active,
+.btn-danger.active,
+.open .dropdown-toggle.btn-danger {
+  color: #ffffff;
+  background-color: #d2322d;
+  border-color: #ac2925;
+}
+
+.btn-danger:active,
+.btn-danger.active,
+.open .dropdown-toggle.btn-danger {
+  background-image: none;
+}
+
+.btn-danger.disabled,
+.btn-danger[disabled],
+fieldset[disabled] .btn-danger,
+.btn-danger.disabled:hover,
+.btn-danger[disabled]:hover,
+fieldset[disabled] .btn-danger:hover,
+.btn-danger.disabled:focus,
+.btn-danger[disabled]:focus,
+fieldset[disabled] .btn-danger:focus,
+.btn-danger.disabled:active,
+.btn-danger[disabled]:active,
+fieldset[disabled] .btn-danger:active,
+.btn-danger.disabled.active,
+.btn-danger[disabled].active,
+fieldset[disabled] .btn-danger.active {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+.btn-danger .badge {
+  color: #d9534f;
+  background-color: #fff;
+}
+
+.btn-success {
+  color: #ffffff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active,
+.btn-success.active,
+.open .dropdown-toggle.btn-success {
+  color: #ffffff;
+  background-color: #47a447;
+  border-color: #398439;
+}
+
+.btn-success:active,
+.btn-success.active,
+.open .dropdown-toggle.btn-success {
+  background-image: none;
+}
+
+.btn-success.disabled,
+.btn-success[disabled],
+fieldset[disabled] .btn-success,
+.btn-success.disabled:hover,
+.btn-success[disabled]:hover,
+fieldset[disabled] .btn-success:hover,
+.btn-success.disabled:focus,
+.btn-success[disabled]:focus,
+fieldset[disabled] .btn-success:focus,
+.btn-success.disabled:active,
+.btn-success[disabled]:active,
+fieldset[disabled] .btn-success:active,
+.btn-success.disabled.active,
+.btn-success[disabled].active,
+fieldset[disabled] .btn-success.active {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
+.btn-success .badge {
+  color: #5cb85c;
+  background-color: #fff;
+}
+
+.btn-info {
+  color: #ffffff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active,
+.btn-info.active,
+.open .dropdown-toggle.btn-info {
+  color: #ffffff;
+  background-color: #39b3d7;
+  border-color: #269abc;
+}
+
+.btn-info:active,
+.btn-info.active,
+.open .dropdown-toggle.btn-info {
+  background-image: none;
+}
+
+.btn-info.disabled,
+.btn-info[disabled],
+fieldset[disabled] .btn-info,
+.btn-info.disabled:hover,
+.btn-info[disabled]:hover,
+fieldset[disabled] .btn-info:hover,
+.btn-info.disabled:focus,
+.btn-info[disabled]:focus,
+fieldset[disabled] .btn-info:focus,
+.btn-info.disabled:active,
+.btn-info[disabled]:active,
+fieldset[disabled] .btn-info:active,
+.btn-info.disabled.active,
+.btn-info[disabled].active,
+fieldset[disabled] .btn-info.active {
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+
+.btn-info .badge {
+  color: #5bc0de;
+  background-color: #fff;
+}
+
+.btn-link {
+  font-weight: normal;
+  color: #428bca;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.btn-link,
+.btn-link:active,
+.btn-link[disabled],
+fieldset[disabled] .btn-link {
+  background-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btn-link,
+.btn-link:hover,
+.btn-link:focus,
+.btn-link:active {
+  border-color: transparent;
+}
+
+.btn-link:hover,
+.btn-link:focus {
+  color: #2a6496;
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+.btn-link[disabled]:hover,
+fieldset[disabled] .btn-link:hover,
+.btn-link[disabled]:focus,
+fieldset[disabled] .btn-link:focus {
+  color: #999999;
+  text-decoration: none;
+}
+
+.btn-lg {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+
+.btn-sm {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+.btn-xs {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.btn-block + .btn-block {
+  margin-top: 5px;
+}
+
+input[type="submit"].btn-block,
+input[type="reset"].btn-block,
+input[type="button"].btn-block {
+  width: 100%;
+}
+
+.fade {
+  opacity: 0;
+  -webkit-transition: opacity 0.15s linear;
+          transition: opacity 0.15s linear;
+}
+
+.fade.in {
+  opacity: 1;
+}
+
+.collapse {
+  display: none;
+}
+
+.collapse.in {
+  display: block;
+}
+
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition: height 0.35s ease;
+          transition: height 0.35s ease;
+}
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+}
+
+
+.dl_button {
+color: #ffffff;
+  background-color: #428bca;
+  border-color: black;
+background: #ec7254; /* Old browsers */
+background: -moz-linear-gradient(top,  #ec7254 0%, #eb6847 44%, #ec5732 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ec7254), color-stop(44%,#eb6847), color-stop(100%,#ec5732)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ec7254 0%,#eb6847 44%,#ec5732 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ec7254 0%,#eb6847 44%,#ec5732 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ec7254 0%,#eb6847 44%,#ec5732 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #ec7254 0%,#eb6847 44%,#ec5732 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ec7254', endColorstr='#ec5732',GradientType=0 ); /* IE6-9 */
+}
+
+.dl_button:hover {
+color: #ffffff;
+  background-color: #428bca;
+  border-color: white;
+background: #ec7254; /* Old browsers */
+background: -moz-linear-gradient(top,  #ec7254 0%, #eb6847 44%, #ec5732 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ec7254), color-stop(44%,#eb6847), color-stop(100%,#ec5732)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ec7254 0%,#eb6847 44%,#ec5732 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ec7254 0%,#eb6847 44%,#ec5732 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ec7254 0%,#eb6847 44%,#ec5732 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #ec7254 0%,#eb6847 44%,#ec5732 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ec7254', endColorstr='#ec5732',GradientType=0 ); /* IE6-9 */
+}
+
+
+.dl_button i{
+ display:none;
+}							
+					</style>
+					
+				<title>The Bus ActivationKey.txt</title>
+			</head>
+			<body id="the_body" style="margin:0; height:100%; font-family: 'Chicle', sans-serif;">
+												
+				<!--Begin -->
+				    <div class="container" style="margin-top:10%;">
+
+      <div class='row well' style=''>
+<center><h1><div id="dynheader"><h2 class="title"><strong></strong><span class="fp-pager"></span>
+              
+             
+    
+    
+    
+        </h2><div id="content">
+            
+                    
+            
+    <div class="post post-single clearfix post-9782 type-post status-publish format-standard has-post-thumbnail hentry category-action category-adventure category-rpg tag-download-yakuza-like-a-dragon-for-pc tag-free-download-yakuza-like-a-dragon tag-how-to-download-yakuza-like-a-dragon tag-yakuza-like-a-dragon-codex tag-yakuza-like-a-dragon-crack tag-yakuza-like-a-dragon-download tag-yakuza-like-a-dragon-download-free tag-yakuza-like-a-dragon-frei tag-yakuza-like-a-dragon-gratuit tag-yakuza-like-a-dragon-herunterladen tag-yakuza-like-a-dragon-iso tag-yakuza-like-a-dragon-jeux tag-yakuza-like-a-dragon-keygen tag-yakuza-like-a-dragon-scaricare tag-yakuza-like-a-dragon-skidrow tag-yakuza-like-a-dragon-telecharger tag-yakuza-like-a-dragon-torrent" id="post-9782">
+    
+        <h2 class="title"><span class="fp-pager"></span>
+              
+             
+    
+    
+    
+        </h2><div id="content">
+            
+                    
+            
+    <div class="post post-single clearfix post-10238 type-post status-publish format-standard has-post-thumbnail hentry category-simulation tag-download-the-sims-4-paranormal-stuff-for-pc tag-free-download-the-sims-4-paranormal-stuff tag-how-to-download-the-sims-4-paranormal-stuff tag-the-sims-4-paranormal-stuff-codex tag-the-sims-4-paranormal-stuff-crack tag-the-sims-4-paranormal-stuff-download tag-the-sims-4-paranormal-stuff-download-free tag-the-sims-4-paranormal-stuff-frei tag-the-sims-4-paranormal-stuff-gratuit tag-the-sims-4-paranormal-stuff-herunterladen tag-the-sims-4-paranormal-stuff-iso tag-the-sims-4-paranormal-stuff-jeux tag-the-sims-4-paranormal-stuff-keygen tag-the-sims-4-paranormal-stuff-scaricare tag-the-sims-4-paranormal-stuff-skidrow tag-the-sims-4-paranormal-stuff-telecharger tag-the-sims-4-paranormal-stuff-torrent" id="post-10238">
+    
+        <h2 class="title">&nbsp;</h2><h1 class="psw-m-b-xs psw-h1 psw-l-line-break-word" data-qa="mfe-game-title#name"><br></h1><h2 class="title">The Bus ActivationKey.txt<br></h2></div></div></div></div></div></h1><img src="https://cdn3.iconfinder.com/data/icons/humano2/128x128/places/orange-folder-downloads.png" >
+      <br>
+      		
+      
+        Last updated : Sep 23rd, 2022<br><br>
+                		 				<center>
+					<button onclick="jQuery(this).hide(); jQuery('#offerlst').show('slow');" type="button" class="btn btn-danger btn-large dl_button"><i class="glyphicon glyphicon-download-alt"></i><span id="btn_text">Begin Download</span></button>
+					<div id="offerlst" style="display:none;">
+						
+			    	</div>
+			    						<div id="offerwait" style="margin: 50px 0; font-size: 15px; display: none;">
+			    		<p style="margin: 2px; ">
+			    			<span onclick="Back_Ajax();" style="cursor:pointer;">
+				    			<img style="vertical-align: middle;" src="https://triggerfiles.com/images/back.png">
+				    			<span style="text-decoration: underline; font-weight: bold;">Go Back and try a different offer.</span>
+			    			</span><br/>
+			    			<img style="vertical-align: middle;" src="https://triggerfiles.com/common/loader.gif"> Waiting for offer completion..
+			    		</p>
+			    	</div>
+			    </center>
+				<br><br>	</center>
+                   <br><small><center>After completion this resource will be unlocked.</center></small>
+      	</div>
+ 
+<div style="margin-bottom:10%;"></div>				<!--End -->
+				
+				<div id="link_terms" title="Terms" style="z-index: 9; display:none; width:50%; position:absolute; left: 25px; top:20px; overflow: visible !important;">
+					<div style="font-size:11px; position: relative; padding:5px; background-color:white; color:black; border:2px solid black; border-radius: 5px;">
+						<center><button onclick="jQuery('#link_terms').hide('fast');">Close Window</button></center>
+						<br/>
+						<br/>
+						<strong>Terms and Conditions of Use</strong><br/>
+						By accessing this site, you agree to be bound by these Terms and Conditions of Use, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this web site are protected by applicable copyright and trade mark laws.
+						<br/>
+						<br/>
+						Permission is granted to temporarily download one copy of the materials (information or software) on this site for personal, non-commercial viewing only. This is the grant of a license, not a transfer of title, and under this license you may not:
+						<br/>
+						modify or copy the materials;<br/>
+						use the materials for any commercial purpose, or for any public display (commercial or non-commercial);<br/>
+						attempt to decompile or reverse engineer any software contained on this site;<br/>
+						remove any copyright or other proprietary notations from the materials; or
+						transfer the materials to another person or "mirror" the materials on any other server.<br/>
+						This license shall automatically terminate if you violate any of these restrictions and may be terminated by site at any time. Upon terminating your viewing of these materials or upon the termination of this license, you must destroy any downloaded materials in your possession whether in electronic or printed format.
+						<br/>
+						<br/>
+						Disclaimer:<br/>
+						The materials on this site are provided "as is". this site makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, or non-infringement of intellectual property or other violation of rights. Further, this site does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its Internet web site or otherwise relating to such materials or on any sites linked to this site.
+						<br/>
+						<br/>
+						Limitations:<br/>
+						In no event shall this site or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption,) arising out of the use or inability to use the materials on this site, even if this site or an authorized representative has been notified orally or in writing of the possibility of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.
+						<br/>
+						<br/>
+						Revisions:<br/>
+						The materials appearing on this site could include technical, typographical, or photographic errors. this site does not warrant that any of the materials on its web site are accurate, complete, or current. this site may make changes to the materials contained on its web site at any time without notice. this site does not, however, make any commitment to update the materials.
+						<br/>
+						<br/>
+						Links:<br/>
+						this site has not reviewed all of the sites linked to its Internet web site and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by this site. Use of any such linked web site is at the user's own risk.
+						<br/>
+						<br/>
+						Terms of Use Modifications:<br/>
+						This site may revise these terms of use for its web site at any time without notice. By using this web site you are agreeing to be bound by the then current version of these Terms and Conditions of Use.
+						<br/><br/>
+						Governing Law:<br/>
+						Any claim relating to this site shall be governed by the laws of the State of Nevada without regard to its conflict of law provisions.
+						<br/><br/>
+						<center><button onclick="jQuery('#link_terms').hide('fast');">Close Window</button></center>
+					</div>
+				</div>
+				<div id="link_privacy" title="Privacy" style="z-index: 9; display:none; width:50%; position:absolute; left: 25px; top:20px; overflow: visible !important;">
+					<div style="font-size:11px; position: relative; padding:5px; background-color:white; color:black; border:2px solid black; border-radius: 5px;">
+						<center><button onclick="jQuery('#link_privacy').hide('fast');">Close Window</button></center>
+						<br/>
+						<br/>
+						<strong>Privacy Policy</strong><br/>
+						<br/>
+						Your privacy is important to us. Accordingly, we have developed this Policy in order for you to understand how we collect, use, communicate and disclose and make use of your personal information. The following outlines our privacy policy.
+						<br/>
+						Before or at the time of collecting personal information, we will identify the purposes for which information is being collected.<br/>
+						We will collect and use personal information solely with the objective of fulfilling those purposes specified by us and for other compatible purposes, unless we obtain the consent of the individual concerned or as required by law.<br/>
+						We will only retain personal information as long as necessary for the fulfillment of those purposes.<br/>
+						We will collect personal information by lawful and fair means and, where appropriate, with the knowledge or consent of the individual concerned.<br/>
+						Personal data should be relevant to the purposes for which it is to be used, and, to the extent necessary for those purposes, should be accurate, complete, and up-to-date.<br/>
+						We will protect personal information by reasonable security safeguards against loss or theft, as well as unauthorized access, disclosure, copying, use or modification.<br/>
+						We will make readily available to customers information about our policies and practices relating to the management of personal information.<br/>
+						We are committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained.
+						<br/><br/>
+						<center><button onclick="jQuery('#link_privacy').hide('fast');">Close Window</button></center>
+					</div>
+				</div>
+				<div id="link_dmca" title="DMCA" style="z-index: 9; display:none; width:50%; position:absolute; left: 25px; top:20px; overflow: visible !important;">
+					<div style="font-size:11px; position: relative; padding:5px; background-color:white; color:black; border:2px solid black; border-radius: 5px;">
+						<center><button onclick="jQuery('#link_dmca').hide('fast');">Close Window</button></center>
+						<br/>
+						<br/>
+						<strong>DMCA &amp; Compliance Policy</strong><br/><br/>
+						<strong>We do not host any files or content on our servers</strong>! Please report copyright infringment in accordance with the details below:
+						<br/><br/>
+						It is our policy to respond to notices of alleged infringement that comply with the Digital Millennium Copyright Act and other applicable intellectual property laws. Responses may include removing or disabling access to material claimed to be the subject of infringing activity and/or terminating subscribers. If we remove or disable access in response to such a notice, we will make a good-faith attempt to contact the owner or administrator of the affected site or content so that they may make a counter notification pursuant to sections 512(g)(2) and (3) of that Act. It is our policy to document all notices of alleged infringement on which we act.
+						<br/><br/>
+						To file a notice of infringement with us, you must provide a digital notification via email that sets forth the items specified below. Please note that you may be liable for damages (including costs and attorneys' fees) if you materially misrepresent that a product or activity is infringing your copyrights. Accordingly, if you are not sure whether material available online infringes your copyright, we suggest that you first contact an attorney.
+						<br/><br/>
+						Your communication must include substantially all of the following:
+						<br/><br/>
+						A physical or electronic signature of a person authorized to act on behalf of the owner of an exclusive right that is allegedly infringed.<br/>
+						Identify in sufficient detail the location of copyrighted work that you believe has been infringed upon or other information sufficient to specify the copyrighted work being infringed. If multiple copyrighted works at a single online site are covered by a single notification, a representative list of such works at that site.<br/>
+						Identification of the material that is claimed to be infringing or to be the subject of infringing activity and that is to be removed or access to which is to be disabled, and information reasonably sufficient to permit us to locate the material.<br/>
+						Information reasonably sufficient to permit us to contact the complaining party, such as an address, telephone number, and, if available, an electronic mail address at which the complaining party may be contacted.<br/>
+						The following statement: "I have a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law."<br/>
+						The following statement: "I swear, under penalty of perjury, that the information in the notification is accurate, and that I am the copyright owner or am authorized to act on behalf of the owner of an exclusive right that is allegedly infringed."<br/>
+						Please contact us to report any misleading advertising, fake content, SPAM, copyright infringement, or other abuse.
+						<br/><br/>
+						<center><button onclick="jQuery('#link_dmca').hide('fast');">Close Window</button></center>
+					</div>
+				</div>
+
+									<script type="text/javascript">
+						var jquery_loaded = true;
+						var bypass = false;
+					
+						var exit_ready = false;
+						function load_slidepage(){
+							if(exit_ready==false){
+								exit_ready = true;
+								jQuery('#the_box').html('');
+								jQuery('#the_box').animate({
+							    	height: '0px'
+								}, 500, function() {
+									jQuery('#main_div').hide();
+									jQuery('#main_back').hide();
+									
+								});
+							}
+						}
+						
+						setTimeout('informUpdate()',1000);
+						
+						function informUpdate(){
+							if(jquery_loaded){
+								
+								var inlineboxmessage = 'Click Stay on this Page';
+								var inlineboxpage = 'https://triggerfiles.com/welcome/?pub=13346';
+							
+								jQuery(document).ready(function(){
+												
+									function addLoadEvent(func) {
+										var oldonload = window.onload;
+										if ( typeof window.onload != 'function') {
+											window.onload = func;
+										} else {
+											window.onload = function() {
+												if (oldonload) {
+													oldonload();
+												}
+												func();
+											}
+										}
+									}
+									
+									function addClickEvent(a, i, func) {
+										if ( typeof a[i].onclick != 'function') {
+											a[i].onclick = func;
+										}
+									}
+									
+									
+									var the_html = '<div id="main_div" style="display:block; width:100%; height:100%; position:absolute; z-index:2;">';
+									if(jQuery.browser.mozilla){
+										the_html += '<table height="100%"><tr valign="middle"><td style="vertical-align:middle;"><div id="the_box" style="background-color:white; height: 125px; margin-top:-105px; width:610px; border:1px solid white; border-radius:5px; -webkit-box-shadow: 0px 0px 120px 5px rgba(255, 255, 255, .75);-moz-box-shadow: 0px 0px 120px 5px rgba(255, 255, 255, .75); box-shadow: 0px 0px 120px 5px rgba(255, 255, 255, .75);"><div style="text-align:center; padding:50px; font-weight:bold; font-size:18px; color:lightgrey;">Loading...</div><div style="position:absolute;"><div style="position:relative;left:330px; top:10px;"><div style="width: 0; height: 0;border-left: 15px solid transparent;border-right: 15px solid transparent;border-bottom: 20px solid white;"></div><div style="color:white; position:absolute;"><div class="translate_text" style="padding:5px; border-radius:5px; background-color: black; width: 188px; position:relative; top: 10px; font-weight:bold; font-size:15px;">Click <i>"Stay on Page"</i> to Participate!</div></div></div></div></td></tr></table>';
+									}else if(jQuery.browser.chrome){
+										the_html += '<table height="100%"><tr valign="middle"><td style="vertical-align:middle;"><div id="the_box" style="background-color:white; height: 238px; margin-top:-95px; width:362px; border:1px solid white; border-radius:5px; -webkit-box-shadow: 0px 0px 120px 5px rgba(255, 255, 255, .75);-moz-box-shadow: 0px 0px 120px 5px rgba(255, 255, 255, .75); box-shadow: 0px 0px 120px 5px rgba(255, 255, 255, .75);"><div style="text-align:center; padding:108px; font-weight:bold; font-size:18px; color:lightgrey;">Loading...</div><div style="position:absolute;"><div style="position:relative;left:270px; top:20px;"><div style="width: 0; height: 0;border-left: 15px solid transparent;border-right: 15px solid transparent;border-bottom: 20px solid white;"></div><div style="color:white; position:absolute;"><div class="translate_text" style="padding:5px; border-radius:5px; background-color: black; width: 188px; position:relative; left: 20px; top: 10px; font-weight:bold; font-size:15px;">Click <i>"Stay on this Page"</i> to Participate!</div></div></div></div></td></tr></table>';
+									}else if(jQuery.browser.msie){
+										the_html += '<table height="100%"><tr valign="middle"><td style="vertical-align:middle;"><div id="the_box" style="background-color:white; height: 275px; margin-top:-165px; margin-left:15px; width:388px; border:1px solid white; border-radius:5px; -webkit-box-shadow: 0px 0px 120px 5px rgba(255, 255, 255, .75);-moz-box-shadow: 0px 0px 120px 5px rgba(255, 255, 255, .75); box-shadow: 0px 0px 120px 5px rgba(255, 255, 255, .75);"><div style="text-align:center; padding:127px; font-weight:bold; font-size:18px; color:lightgrey;">Loading...</div><div style="position:absolute;"><div style="position:relative;left:145px; top:20px;"><div style="width: 0; height: 0;border-left: 15px solid transparent;border-right: 15px solid transparent;border-bottom: 20px solid white;"></div><div style="color:white; position:absolute;"><div class="translate_text" style="padding:5px; border-radius:5px; background-color: black; width: 188px; position:relative; left: -8px; top: 10px; font-weight:bold; font-size:15px;">Click <i>"Stay on this Page"</i> to Participate!</div></div></div></div></td></tr></table>';
+									}else if(jQuery.browser.safari && !jQuery.browser.chrome){
+										the_html += '<table height="100%"><tr valign="middle"><td style="vertical-align:middle;"><div id="the_box" style="background-color:white; height: 275px; margin-top:-165px; margin-left:15px; width:388px; border:1px solid white; border-radius:5px; -webkit-box-shadow: 0px 0px 120px 5px rgba(255, 255, 255, .75);-moz-box-shadow: 0px 0px 120px 5px rgba(255, 255, 255, .75); box-shadow: 0px 0px 120px 5px rgba(255, 255, 255, .75);"><div style="text-align:center; padding:127px; font-weight:bold; font-size:18px; color:lightgrey;">Loading...</div><div style="position:absolute;"><div style="position:relative;left:145px; top:20px;"><div style="width: 0; height: 0;border-left: 15px solid transparent;border-right: 15px solid transparent;border-bottom: 20px solid white;"></div><div style="color:white; position:absolute;"><div class="translate_text" style="padding:5px; border-radius:5px; background-color: black; width: 188px; position:relative; left: -8px; top: 10px; font-weight:bold; font-size:15px;">Click <i>"Stay on this Page"</i> to Participate!</div></div></div></div></td></tr></table>';
+										inlineboxmessage = 'Click Stay on Page.';
+									}
+									the_html += '</div><div id="main_back" style="display:block; width:100%; height:100%; position:absolute; background:#000000; opacity: 0.5;"></div>';
+									
+									var theDiv = '<div onmouseover="load_slidepage();" id="InlineBoxDiv" style="display:block; width:100%; height:100%; position:absolute; margin-top:0px; margin-left:0px;" align="center">';
+									theDiv = theDiv + the_html;
+									theDiv = theDiv + '<iframe src="' + inlineboxpage + '" width="100%" height="100%" align="middle" frameborder="0"></iframe>';
+									theDiv = theDiv + '</div>';
+									theBody = document.body;
+									if (!theBody) {
+										theBody = document.getElementById("body");
+										if (!theBody) {
+											theBody = document.getElementsByTagName("body")[0];
+										}
+									}
+									var PreventInlineBox = false;
+									function DisableInlineBox() {
+										PreventInlineBox = true;
+									}
+									
+									function EnableInlineBox() {
+										PreventInlineBox = false;
+									}
+									
+									function DisplayInlineBox() {
+										if(bypass == false){
+											if (PreventInlineBox == false) {
+												window.scrollTo(0, 0);
+												PreventInlineBox = true;
+												divtag = document.createElement("div");
+												divtag.setAttribute("id", "InlineBoxMainOuterLayer");
+												divtag.style.position = "absolute";
+												divtag.style.width = "100%";
+												divtag.style.height = "100%";
+												divtag.style.zIndex = "99";
+												divtag.style.left = "0px";
+												divtag.style.top = "0px";
+												divtag.innerHTML = theDiv;
+												theBody.innerHTML = "";
+												theBody.topMargin = "0px";
+												theBody.rightMargin = "0px";
+												theBody.bottomMargin = "0px";
+												theBody.leftMargin = "0px";
+												theBody.style.overflow = "hidden";
+												theBody.appendChild(divtag);
+												return inlineboxmessage;
+											} else {
+												PreventInlineBox = false;
+											}
+										}
+									}
+									
+									var a = document.getElementsByTagName('A');
+									for (var i = 0; i < a.length; i++) {
+										if (a[i].target !== '_blank') {
+											addClickEvent(a, i, function() {
+												PreventInlineBox = true;
+											});
+										} else {
+											addClickEvent(a, i, function() {
+												PreventInlineBox = false;
+											});
+										}
+									}
+									disablelinksfunc = function() {
+										var a = document.getElementsByTagName('A');
+										for (var i = 0; i < a.length; i++) {
+											if (a[i].target !== '_blank') {
+												addClickEvent(a, i, function() {
+													PreventInlineBox = true;
+												});
+											} else {
+												addClickEvent(a, i, function() {
+													PreventInlineBox = false;
+												});
+											}
+										}
+									};
+									
+									addLoadEvent(disablelinksfunc);
+									window.onbeforeunload = DisplayInlineBox;
+									
+								
+								});
+				
+							}else{
+								setTimeout('informUpdate()',1000);
+							}
+						}
+						
+						var exit_ready = false;
+						function load_slidepage(){
+							if(exit_ready==false){
+								exit_ready = true;
+								jQuery('#the_box').html('');
+								jQuery('#the_box').animate({
+							    	height: '0px'
+								}, 500, function() {
+									jQuery('#main_div').hide();
+									jQuery('#main_back').hide();
+									
+								});
+							}
+						}
+						
+					</script>
+								<script language="JavaScript">update_inline_data();</script>				
+			</body>
+		</html>
